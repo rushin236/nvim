@@ -12,7 +12,6 @@ return {
         "ruff",
         "pyright",
         "ruff-lsp",
-        "python-lsp-server",
         "prettier",
       },
     },
