@@ -9,7 +9,7 @@ return {
         "shfmt",
         "black",
         "isort",
-        "pylint",
+        "ruff",
         "pyright",
         "ruff-lsp",
         "python-lsp-server",
