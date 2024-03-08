@@ -11,6 +11,7 @@ return {
         "pylint",
         "pyright",
         "ruff-lsp",
+        "python-lsp-server",
         "ruff",
         "prettier",
       },

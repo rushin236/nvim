@@ -85,6 +85,10 @@ return {
         capabilities = capabilities,
       })
 
+      lspconfig["pylsp"].setup({
+        capabilities = capabilities,
+      })
+
       -- configure lua server (with special settings)
       lspconfig["lua_ls"].setup({
         capabilities = capabilities,
