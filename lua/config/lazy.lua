@@ -13,7 +13,6 @@ require("lazy").setup({
     -- import any extras modules here
     -- use mini.starter instead of alpha
     -- import/override with your plugins
-    { import = "lazyvim.plugins.extras.lang.python" },
     { import = "plugins" },
   },
   defaults = {
