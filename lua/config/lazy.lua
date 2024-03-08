@@ -6,10 +6,14 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+require("config.keymaps")
+require("config.options")
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
-    { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+    { "folke/lazy.nvim", version = false },
+    { "LazyVim/LazyVim", version = false },
     -- import any extras modules here
     -- use mini.starter instead of alpha
     -- import/override with your plugins

@@ -1,8 +1,8 @@
 return {
-  -- add gruvbox
-  {
-    "ellisonleao/gruvbox.nvim",
-  },
+  -- -- add gruvbox
+  -- {
+  --   "ellisonleao/gruvbox.nvim",
+  -- },
 
   -- add tokyonight
   {
