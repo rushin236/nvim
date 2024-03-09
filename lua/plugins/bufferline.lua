@@ -2,7 +2,6 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    { "echasnovski/mini.bufremove", version = "*" },
   },
   version = "*",
   keys = {
@@ -27,8 +26,8 @@ return {
       always_show_bufferline = true,
       offsets = {
         {
-          filetype = "NvimTree",
-          text = "NvimTree",
+          filetype = "neo-tree",
+          text = "Explorer",
           highlight = "Directory",
           text_align = "left",
           separator = true, -- use a "true" to enable the default, or set your own character

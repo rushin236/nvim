@@ -1,13 +1,14 @@
 return {
   "akinsho/toggleterm.nvim",
   version = "*",
+  event = "VeryLazy",
   config = function()
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
       shell = "pwsh.exe",
       size = 18,
-      open_mapping = [[<C-\>]],
+      open_mapping = [[<C-`>]],
       hide_numbers = true,
       shade_filetypes = {},
       shade_terminals = true,
