@@ -2,6 +2,16 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
+    { "echasnovski/mini.bufremove", version = "*" },
+    {
+      "ojroques/nvim-bufdel",
+      config = function()
+        require("bufdel").setup({
+          next = "tabs",
+          quit = true,
+        })
+      end,
+    },
   },
   version = "*",
   keys = {
@@ -10,6 +20,7 @@ return {
     { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
     { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
     { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+    { "<leader>bd", "<cmd>BufDel<cr>", desc = "Delete Current Buffer" },
     { "<leader>bs", "<Cmd>BufferLinePick<CR>", desc = "Selete buffers" },
     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
