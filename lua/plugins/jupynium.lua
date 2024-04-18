@@ -14,7 +14,7 @@ return {
       python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
       -- python_host = vim.g.python3_host_prog or "python",
 
-      default_notebook_URL = "localhost:8888/nbclassic",
+      default_notebook_URL = "localhost:8888",
 
       jupyter_command = "jupyter",
       --- For Conda, maybe use base environment
