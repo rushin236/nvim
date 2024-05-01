@@ -6,7 +6,7 @@ return {
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
-      shell = vim.o.shell,
+      shell = "pwsh.exe" or vim.o.shell,
       size = 18,
       open_mapping = [[<C-\>]],
       hide_numbers = true,
