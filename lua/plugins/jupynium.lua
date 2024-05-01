@@ -1,17 +1,15 @@
 return {
   "kiyoon/jupynium.nvim",
-  build = "pip install --user .",
+  build = "conda run --no-capture-output -n jupynium pip install .",
+  enabled = vim.fn.isdirectory(vim.fn.expand("~/miniconda3/envs/jupynium")),
   dependecies = {
-    "rcarriga/nvim-notify",   -- optional
+    "rcarriga/nvim-notify", -- optional
     "stevearc/dressing.nvim", -- optional, UI for :JupyniumKernelSelect
   },
   config = function()
-    local jupynium = require("jupynium")
-    jupynium.setup({
+    require("jupynium").setup({
       --- For Conda environment named "jupynium",
-      python_host = vim.g.python3_host_prog or "python",
-      -- python_host = vim.g.python3_host_prog or "python",
-      default_notebook_URL = "localhost:8888",
+      python_host = { "conda", "run", "--no-capture-output", "-n", "jupynium", "python" },
     })
   end,
 }
