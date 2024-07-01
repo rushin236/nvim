@@ -37,10 +37,7 @@ return {
         "emmet_ls",
         "prismals",
         "pyright",
-        "ruff_lsp",
       },
-      -- auto-install configured servers (with lspconfig)
-      automatic_installation = true, -- not the same as ensure_installed
     })
 
     mason_tool_installer.setup({
@@ -49,9 +46,8 @@ return {
         "stylua", -- lua formatter
         "isort", -- python formatter
         "black", -- python formatter
-        "eslint_d", -- js linter
-        "ruff", -- python linter
-        -- "pylint", -- python linter
+        "pylint",
+        "eslint_d",
       },
     })
   end,

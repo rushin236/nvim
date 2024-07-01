@@ -1,7 +1,6 @@
 return {
   "stevearc/conform.nvim",
-  lazy = true,
-  event = { "BufReadPre", "BufNewFile" }, -- to disable, comment this out
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     local conform = require("conform")
 
@@ -18,22 +17,22 @@ return {
         yaml = { "prettier" },
         markdown = { "prettier" },
         graphql = { "prettier" },
+        liquid = { "prettier" },
         lua = { "stylua" },
         python = { "isort", "black" },
       },
       format_on_save = {
         lsp_fallback = true,
         async = false,
-        timeout_ms = 3000,
+        timeout_ms = 1000,
       },
     })
 
-    vim.keymap.set({ "n", "v" }, "<leader>cf", function()
+    vim.keymap.set({ "n", "v" }, "<leader>mp", function()
       conform.format({
         lsp_fallback = true,
         async = false,
-        timeout_ms = 3000,
-        quiet = false,
+        timeout_ms = 1000,
       })
     end, { desc = "Format file or range (in visual mode)" })
   end,
