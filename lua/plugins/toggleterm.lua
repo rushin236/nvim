@@ -6,7 +6,6 @@ return {
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
-      shell = vim.o.shell,
       size = 18,
       open_mapping = [[<C-\>]],
       hide_numbers = true,
