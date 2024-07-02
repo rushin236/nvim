@@ -50,7 +50,7 @@ return {
         "isort", -- python formatter
         "black", -- python formatter
         "eslint_d", -- js linter
-        "ruff", -- python linter
+        "ruff",
         -- "pylint", -- python linter
       },
     })
