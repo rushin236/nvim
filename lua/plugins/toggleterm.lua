@@ -6,6 +6,7 @@ return {
     local toggleterm = require("toggleterm")
 
     toggleterm.setup({
+      shell = "pwsh.exe",
       size = 18,
       open_mapping = [[<C-\>]],
       hide_numbers = true,
