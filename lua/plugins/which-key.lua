@@ -19,7 +19,7 @@ return {
       ["<leader>s"] = { name = "+split" },
       ["<leader>u"] = { name = "+ui" },
       ["<leader>w"] = { name = "+windows" },
-      ["<leader>x"] = { name = "+diagnostics/quickfix" },
+      ["<leader>d"] = { name = "+diagnostics/quickfix" },
     },
   },
   config = function(_, opts)
