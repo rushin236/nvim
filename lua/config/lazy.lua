@@ -16,8 +16,6 @@ require("config.options")
 
 require("lazy").setup({
   spec = {
-    { "LazyVim/LazyVim" },
-    -- add LazyVim and import its plugins
     { import = "plugins" },
   },
   checker = {
