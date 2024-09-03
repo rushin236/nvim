@@ -2,103 +2,72 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
+    "hrsh7th/nvim-cmp", -- Completion plugin
+    "hrsh7th/cmp-nvim-lsp", -- LSP completion source for nvim-cmp
+    -- { "antosha417/nvim-lsp-file-operations", config = true }, -- LSP-based file operations
+    -- { "folke/neodev.nvim", opts = {} }, -- Neovim API support for Lua
   },
   config = function()
-    -- import lspconfig plugin
+    -- Import required plugins
     local lspconfig = require("lspconfig")
-
-    -- import mason_lspconfig plugin
     local mason_lspconfig = require("mason-lspconfig")
-
-    -- import cmp-nvim-lsp plugin
     local cmp_nvim_lsp = require("cmp_nvim_lsp")
+    local keymap = vim.keymap -- for keybinding convenience
 
-    local keymap = vim.keymap -- for conciseness
+    -- Key mappings for LSP functionality
+    local function on_attach(_, bufnr)
+      local opts = { buffer = bufnr, silent = true }
 
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("UserLspConfig", {}),
-      callback = function(ev)
-        -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
-        local opts = { buffer = ev.buf, silent = true }
+      -- Helper function to merge opts
+      local function set_keymap(mode, key, result, desc)
+        vim.keymap.set(mode, key, result, vim.tbl_extend("force", opts, { desc = desc }))
+      end
 
-        -- set keybinds
-        opts.desc = "Show LSP references"
-        keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+      -- Keymaps for LSP actions
+      set_keymap("n", "gR", "<cmd>Telescope lsp_references<CR>", "Show LSP references")
+      set_keymap("n", "gD", vim.lsp.buf.declaration, "Go to declaration")
+      set_keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", "Show LSP definitions")
+      set_keymap("n", "gi", "<cmd>Telescope lsp_implementations<CR>", "Show LSP implementations")
+      set_keymap("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", "Show LSP type definitions")
+      set_keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, "See available code actions")
+      set_keymap("n", "<leader>rn", vim.lsp.buf.rename, "Smart rename")
+      set_keymap("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", "Show buffer diagnostics")
+      set_keymap("n", "<leader>d", vim.diagnostic.open_float, "Show line diagnostics")
+      set_keymap("n", "[d", vim.diagnostic.goto_prev, "Go to previous diagnostic")
+      set_keymap("n", "]d", vim.diagnostic.goto_next, "Go to next diagnostic")
+      set_keymap("n", "K", vim.lsp.buf.hover, "Show documentation")
+      set_keymap("n", "<leader>rs", ":LspRestart<CR>", "Restart LSP")
+    end
 
-        opts.desc = "Go to declaration"
-        keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
-
-        opts.desc = "Show LSP definitions"
-        keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
-
-        opts.desc = "Show LSP implementations"
-        keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
-
-        opts.desc = "Show LSP type definitions"
-        keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
-
-        opts.desc = "See available code actions"
-        keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
-
-        opts.desc = "Smart rename"
-        keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
-
-        opts.desc = "Show buffer diagnostics"
-        keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
-
-        opts.desc = "Show line diagnostics"
-        keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-        opts.desc = "Go to previous diagnostic"
-        keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-        opts.desc = "Go to next diagnostic"
-        keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-        opts.desc = "Show documentation for what is under cursor"
-        keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-        opts.desc = "Restart LSP"
-        keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
-      end,
-    })
-
-    -- used to enable autocompletion (assign to every lsp server config)
-    local capabilities = cmp_nvim_lsp.default_capabilities()
-
-    -- Change the Diagnostic symbols in the sign column (gutter)
-    -- (not in youtube nvim video)
+    -- Setup diagnostic symbols
     local signs = { Error = " ", Warn = " ", Hint = "󰠠 ", Info = " " }
     for type, icon in pairs(signs) do
       local hl = "DiagnosticSign" .. type
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
+    -- Set up capabilities for autocompletion
+    local capabilities = cmp_nvim_lsp.default_capabilities()
+
+    -- Configure installed LSP servers
     mason_lspconfig.setup_handlers({
-      -- default handler for installed servers
+      -- Default setup for all installed servers
       function(server_name)
         lspconfig[server_name].setup({
           capabilities = capabilities,
+          on_attach = on_attach, -- Attach keybindings and settings
         })
       end,
 
+      -- Custom settings for Lua LSP (lua_ls)
       ["lua_ls"] = function()
-        -- configure lua server (with special settings)
-        lspconfig["lua_ls"].setup({
+        lspconfig.lua_ls.setup({
           capabilities = capabilities,
+          on_attach = on_attach,
           settings = {
             Lua = {
-              -- make the language server recognize "vim" global
-              diagnostics = {
-                globals = { "vim" },
-              },
-              completion = {
-                callSnippet = "Replace",
-              },
+              diagnostics = { globals = { "vim" } }, -- Recognize Neovim's `vim` global
+              completion = { callSnippet = "Replace" },
             },
           },
         })
