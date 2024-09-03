@@ -29,7 +29,6 @@ return {
       ensure_installed = {
         "lua_ls", -- Lua
         "pyright", -- Python
-        "ruff_ls", -- Python
         "cssls", -- CSS
         "html", -- HTML
         "tsserver", -- JavaScript and TypeScript
