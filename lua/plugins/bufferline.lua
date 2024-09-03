@@ -36,7 +36,7 @@ return {
       always_show_bufferline = true,
       offsets = {
         {
-          filetype = "neo-tree",
+          filetype = "NvimTree",
           text = "Explorer",
           highlight = "Directory",
           text_align = "left",
