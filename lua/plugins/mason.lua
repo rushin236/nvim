@@ -30,6 +30,7 @@ return {
           "cssls", -- CSS
           "html", -- HTML
           "tsserver", -- JavaScript and TypeScript
+          "ruff_lsp",
         },
         automatic_installation = true,
       })
@@ -44,8 +45,8 @@ return {
         ensure_installed = {
           "prettier", -- formatter for multiple languages
           "stylua", -- Lua formatter
-          -- "isort",    -- Python import sorter
-          -- "black",    -- Python formatter
+          -- "isort", -- Python import sorter
+          -- "black", -- Python formatter
           "eslint_d", -- JavaScript linter
           "ruff", -- Python linter
           -- "pylint", -- Python linter (commented out)

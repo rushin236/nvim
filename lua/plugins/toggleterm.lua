@@ -24,7 +24,7 @@ return {
 
     toggleterm.setup({
       shell = shell,
-      size = 12,
+      size = 10,
       open_mapping = [[<C-\>]],
       hide_numbers = true,
       shade_filetypes = {},
