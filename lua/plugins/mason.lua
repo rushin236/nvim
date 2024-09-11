@@ -48,7 +48,7 @@ return {
           "isort", -- Python import sorter
           "black", -- Python formatter
           "eslint_d", -- JavaScript linter
-          -- "ruff", -- Python linter
+          "ruff", -- Python linter
           -- "pylint", -- Python linter (commented out)
         },
       })
