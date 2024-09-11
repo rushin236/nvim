@@ -59,45 +59,6 @@ return {
         })
       end,
 
-      -- Custom settings for pyright (python)
-      ["pyright"] = function()
-        lspconfig.pyright.setup({
-          settings = {
-            python = {
-              analysis = {
-                typeCheckingMode = "off", -- or "basic" if you want minimal type checking
-                diagnosticMode = "openFilesOnly", -- Only check diagnostics for open files
-                useLibraryCodeForTypes = true,
-                autoSearchPaths = true,
-                extraPaths = {},
-                disableOrganizeImports = true, -- Turn off import organization
-                diagnosticSeverityOverrides = {
-                  reportUnknownMemberType = "none", -- Turns off specific warning
-                  reportOptionalSubscript = "none", -- Add any diagnostic you want to disable here
-                  reportGeneralTypeIssues = "none",
-                },
-              },
-            },
-          },
-        })
-      end,
-
-      -- Custom settings for ruff lsp ( python)
-      ["ruff_lsp"] = function()
-        lspconfig.ruff_lsp.setup({
-          settings = {
-            ruff_lsp = {
-              args = {
-                "--select",
-                "E,F", -- Enable only specific codes (you can customize this)
-                "--ignore",
-                "W, D", -- Ignore specific categories (W for warnings, D for docstring warnings, etc.)
-              },
-            },
-          },
-        })
-      end,
-
       -- Custom settings for Lua LSP (lua_ls)
       ["lua_ls"] = function()
         lspconfig.lua_ls.setup({

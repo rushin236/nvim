@@ -29,7 +29,7 @@ return {
           "pyright", -- Python
           "cssls", -- CSS
           "html", -- HTML
-          "tsserver", -- JavaScript and TypeScript
+          "ts_ls", -- JavaScript and TypeScript
           "ruff_lsp",
         },
         automatic_installation = true,
