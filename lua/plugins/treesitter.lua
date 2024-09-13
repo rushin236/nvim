@@ -22,37 +22,27 @@ return {
         autotag = {
           enable = true,
         },
-        -- ensure these language parsers are installed
         ensure_installed = {
-          "c",
-          "diff",
-          "jsdoc",
-          "json",
-          "jsonc",
+          -- Scripting languages
+          "python",
+          "bash",
+          "lua",
+
+          -- Web development languages
+          "html",
+          "css",
           "javascript",
           "typescript",
           "tsx",
+          "json",
+          "jsonc",
           "yaml",
-          "html",
-          "css",
-          "prisma",
-          "python",
-          "markdown",
-          "markdown_inline",
+
+          -- Data science and configuration languages
           "sql",
-          "svelte",
-          "graphql",
-          "bash",
-          "lua",
-          "luadoc",
-          "luap",
-          "vim",
-          "vimdoc",
+          "markdown",
           "dockerfile",
           "gitignore",
-          "query",
-          "regex",
-          "toml",
         },
         incremental_selection = {
           enable = true,
