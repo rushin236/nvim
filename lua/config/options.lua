@@ -1,3 +1,12 @@
+-- Set Python provider based on the OS
+if vim.loop.os_uname().sysname == "Windows_NT" then
+  -- Windows path to Miniconda Python
+  vim.g.python3_host_prog = "C:/Users/rushi/Miniconda3/python.EXE"
+else
+  -- Linux path to Miniconda Python
+  vim.g.python3_host_prog = "/home/yourusername/miniconda3/bin/python"
+end
+
 vim.g.mapleader = " "
 
 -- Enable LazyVim auto format

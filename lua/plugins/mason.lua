@@ -1,6 +1,7 @@
 return {
   {
     "williamboman/mason.nvim",
+    event = { "CmdlineEnter" },
     dependencies = {
       "williamboman/mason-lspconfig.nvim",
       "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -20,6 +21,7 @@ return {
   },
   {
     "williamboman/mason-lspconfig.nvim",
+    event = { "CmdlineEnter" },
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local mason_lspconfig = require("mason-lspconfig")
@@ -38,6 +40,7 @@ return {
   },
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    event = { "CmdlineEnter" },
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local mason_tool_installer = require("mason-tool-installer")
