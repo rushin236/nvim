@@ -33,6 +33,7 @@ return {
           "html", -- HTML
           "ts_ls", -- JavaScript and TypeScript
           "ruff_lsp",
+          "bashls", -- bash-language-server
         },
         automatic_installation = true,
       })
@@ -53,6 +54,7 @@ return {
           "eslint_d", -- JavaScript linter
           "ruff", -- Python linter
           -- "pylint", -- Python linter (commented out)
+          "shfmt", -- bash formatting
         },
       })
     end,
