@@ -3,6 +3,8 @@ local map = vim.keymap.set
 -- use jk to exit insert mode
 map({ "i" }, "jk", "<ESC>", { desc = "Exit Insert mode", silent = true })
 
+-- use rb to reload buffer
+map({ "n" }, "<leader>rb", "<cmd>e!<cr>", { desc = "Reload Buffer", silent = true })
 -- Clear highlights
 map("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
 
