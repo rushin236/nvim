@@ -13,7 +13,7 @@ return {
         width = 35,
         relativenumber = true,
       },
-      -- change folder arrow icons
+      -- change folder arrow and git icons
       renderer = {
         indent_markers = {
           enable = true,
@@ -24,12 +24,20 @@ return {
               arrow_closed = "", -- arrow when folder is closed
               arrow_open = "", -- arrow when folder is open
             },
+            git = {
+              unstaged = "",
+              staged = "",
+              unmerged = "",
+              renamed = "",
+              untracked = "",
+              deleted = "✖",
+              ignored = "",
+            },
+            default = "", -- file icon for empty folder or default file
           },
         },
       },
-      -- disable window_picker for
-      -- explorer to work well with
-      -- window splits
+      -- disable window_picker for explorer to work well with window splits
       actions = {
         open_file = {
           window_picker = {

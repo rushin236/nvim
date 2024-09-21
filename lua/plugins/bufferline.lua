@@ -2,7 +2,6 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = {
     "nvim-tree/nvim-web-devicons",
-    { "echasnovski/mini.bufremove", version = "*" },
     {
       "ojroques/nvim-bufdel",
       config = function()
@@ -26,16 +25,16 @@ return {
     -- Updated <leader>bd to delete the buffer and move to the next or previous buffer
     {
       "<leader>bd",
-      function(n)
+      function()
+        local bufnr = vim.api.nvim_get_current_buf()
+        local buf_count = #vim.fn.getbufinfo({ buflisted = 1 })
         -- Delete the current buffer and move to next or previous
-        require("mini.bufremove").delete(n, false)
 
-        if vim.fn.bufnr("$") == 1 then
+        if buf_count == 0 then
           -- If it's the last buffer, open the explorer
           vim.cmd("NvimTreeOpen")
         else
-          -- Switch to the next or previous buffer after deletion
-          vim.cmd("BufferLineCycleNext")
+          vim.cmd("BufDel" .. bufnr)
         end
       end,
       desc = "Delete buffer and switch",
@@ -44,16 +43,14 @@ return {
   opts = {
     options = {
       close_command = function(n)
-        local bufdelete = require("mini.bufremove").delete
-        bufdelete(n, false)
+        vim.cmd("BufDel" .. n)
         -- Open NvimTree if it's the last buffer
         if vim.fn.bufnr("$") == 1 then
           vim.cmd("NvimTreeOpen")
         end
       end,
       right_mouse_command = function(n)
-        local bufdelete = require("mini.bufremove").delete
-        bufdelete(n, false)
+        vim.cmd("BufDel" .. n)
         -- Open NvimTree if it's the last buffer
         if vim.fn.bufnr("$") == 1 then
           vim.cmd("NvimTreeOpen")
