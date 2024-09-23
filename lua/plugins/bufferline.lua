@@ -22,23 +22,7 @@ return {
     { "<leader>br", "<Cmd>e!<CR>", desc = "Reload buffer" },
     { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Prev buffer" },
     { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Next buffer" },
-    -- Updated <leader>bd to delete the buffer and move to the next or previous buffer
-    {
-      "<leader>bd",
-      function()
-        local bufnr = vim.api.nvim_get_current_buf()
-        local buf_count = #vim.fn.getbufinfo({ buflisted = 1 })
-        -- Delete the current buffer and move to next or previous
-
-        if buf_count == 0 then
-          -- If it's the last buffer, open the explorer
-          vim.cmd("NvimTreeOpen")
-        else
-          vim.cmd("BufDel" .. bufnr)
-        end
-      end,
-      desc = "Delete buffer and switch",
-    },
+    { "<leader>bd", "<cmd>BufDel<cr>", desc = "Delete Current Bufrn" },
   },
   opts = {
     options = {
