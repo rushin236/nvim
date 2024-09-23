@@ -20,20 +20,26 @@ return {
         },
         icons = {
           glyphs = {
+            default = "", -- default file icon
+            symlink = "", -- symlink icon
             folder = {
-              arrow_closed = "", -- arrow when folder is closed
-              arrow_open = "", -- arrow when folder is open
+              arrow_closed = "", -- semi-circle for closed folder
+              arrow_open = "", -- semi-circle for open folder
+              default = "", -- larger-looking closed folder icon
+              open = "", -- larger-looking open folder icon
+              empty = "", -- larger-looking empty folder
+              empty_open = "", -- larger-looking open empty folder
+              symlink = "", -- folder symlink icon
             },
             git = {
-              unstaged = "",
-              staged = "",
-              unmerged = "",
-              renamed = "",
-              untracked = "",
-              deleted = "✖",
-              ignored = "",
+              unstaged = "", -- unstaged changes
+              staged = "", -- staged changes
+              unmerged = "", -- unmerged changes
+              renamed = "", -- renamed files
+              deleted = "", -- deleted files
+              untracked = "", -- untracked files
+              ignored = "◌", -- ignored files
             },
-            default = "", -- file icon for empty folder or default file
           },
         },
       },
